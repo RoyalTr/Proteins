@@ -1,0 +1,9 @@
+numpy	2.0.2
+pandas	2.2.3
+pip	22.3.1
+python-dateutil	2.9.0.post0
+pytz	2024.2
+setuptools	65.5.1
+six	1.17.0
+tzdata	2024.2
+wheel	0.38.4
