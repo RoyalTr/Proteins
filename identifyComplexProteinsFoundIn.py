@@ -1,12 +1,13 @@
 """
 @author: Royal Truman
 
-Find the number of different complexes in which the same protein is used. Data from human dataset.
-First, extract the necessary data from the CORUM 5.0 database, https://mips.helmholtz-muenchen.de/corum/download
-Download all annotated human protein complexes in *.txt format. The file downloaded, corum_humanComplexes.txt,
-contains a huge no. of columns we don't need. Each consists of a complex and the proteins in containts.
-This script identifies all te proteins in the dataset and for each identifies the complexes the protein is found in.
-The list of complexes are output separated by |.
+The purpose of this script is to find the number of different molecular complexes in which the same protein is used.
+First, one must extract the necessary data from the CORUM 5.0 database, https://mips.helmholtz-muenchen.de/corum/download
+Download all annotated human protein complexes in *.txt format. The file downloaded, is called corum_humanComplexes.txt.
+Each line consists of a molecular complex and the proteins in contains, but also many columns we don't need.
+This script extracts the columns needed, and then identifies all the proteins in the dataset. For each protein all
+the complexes it is found in are identified and output separated by |.
+Jan. 2025.
 """
 
 import pandas as pd
