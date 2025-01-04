@@ -1,15 +1,15 @@
 """
 @author: Royal Truman
 
-Find the number of different complexes in which the same protein is used. Data from human dataset.
+Find the molecular complexes in which the same protein is used.
 First, extract the necessary data from the CORUM 5.0 database, https://mips.helmholtz-muenchen.de/corum/download
-Download all annotated human protein complexes in *.txt format. The file downloaded, corum_humanComplexes.txt,
-contains a huge no. of columns we don't need. Each consists of a complex and the proteins in containts.
+Download all annotated human protein complexes in *.txt format. Only the columns we need will be extracted from the
+file downloaded, corum_humanComplexes.txt; specifically, the complexes and the proteins which comprise them.
 This script identifies all te proteins in the dataset and for each identifies the complexes the protein is found in.
 The list of complexes are output separated by |.
 """
 
-import pandas as pd
+from pandas import read_csv, errors
 
 def process_corum_data(input_file, output_sma_file, output_complexes_file):
     """
@@ -23,7 +23,7 @@ def process_corum_data(input_file, output_sma_file, output_complexes_file):
 
     try:
         # 1. Read data and select human records
-        df = pd.read_csv(input_file, sep='\t')
+        df = read_csv(input_file, sep='\t')
         human_df = df[df['organism'] == 'Human']  # Remove bad recs from downloaded file
 
         # 2. Extract and save selected columns WITH HEADER
@@ -58,7 +58,7 @@ def process_corum_data(input_file, output_sma_file, output_complexes_file):
 
     except FileNotFoundError:
         print(f"Error: Input file '{input_file}' not found.")
-    except pd.errors.ParserError:
+    except errors.ParserError:
         print(f"Error: Could not parse input file '{input_file}'. Check file format.")
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
